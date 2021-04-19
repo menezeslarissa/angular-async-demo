@@ -1,0 +1,93 @@
+<div class="card m-3">
+  <h5 class="card-header">Novo Usuário</h5>
+  <div class="card-body">
+    <form
+      name="form"
+      (ngSubmit)="f.form.valid && onSubmit()"
+      #f="ngForm"
+      novalidate
+    >
+      <div class="form-row">
+        <div class="form-group col-5">
+          <label>Nome</label>
+          <input
+            type="text"
+            name="nome"
+            class="form-control"
+            [(ngModel)]="model.firstName"
+            #nome="ngModel"
+            [ngClass]="{ 'is-invalid': f.submitted && nome.invalid }"
+            required
+          />
+          <div *ngIf="f.submitted && nome.invalid" class="invalid-feedback">
+            <div *ngIf="nome.errors.required">
+              Campo nome é obrigatório
+            </div>
+          </div>
+        </div>
+        <div class="form-group col-5">
+          <label>Email</label>
+          <input
+            type="text"
+            name="email"
+            class="form-control"
+            [(ngModel)]="model.email"
+            #email="ngModel"
+            [ngClass]="{ 'is-invalid': f.submitted && email.invalid }"
+            required
+            email
+          />
+          <div *ngIf="f.submitted && email.invalid" class="invalid-feedback">
+            <div *ngIf="email.errors.required">Campo email é obrigatório</div>
+            <div *ngIf="email.errors.email">
+              O email não possui um endereço válido
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group col-5">
+          <label>CPF</label>
+          <input
+            type="text"
+            name="cpf"
+            class="form-control"
+            [(ngModel)]="model.cpf"
+            #cpf="ngModel"
+            [ngClass]="{ 'is-invalid': f.submitted && cpf.invalid }"
+            (blur)="validarCpf(this.model.cpf)"
+            required
+          />
+          <div *ngIf="f.submitted && cpf.invalid" class="invalid-feedback">
+            <div *ngIf="cpf.errors.required">
+              Campo cpf é obrigatório
+            </div>
+          </div>
+        </div>
+        <div class="form-group col-5">
+          <label>Telefone</label>
+          <input
+            type="text"
+            name="telefone"
+            class="form-control"
+            [(ngModel)]="model.telefone"
+            #telefone="ngModel"
+            [ngClass]="{ 'is-invalid': f.submitted && telefone.invalid }"
+            required
+          />
+          <div *ngIf="f.submitted && telefone.invalid" class="invalid-feedback">
+            <div *ngIf="telefone.errors.required">
+              Campo telefone é obrigatório
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-center">
+        <button class="btn btn-primary mr-1">Salvar</button>
+        <button class="btn btn-secondary" type="reset">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>
